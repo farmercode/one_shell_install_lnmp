@@ -1,0 +1,11 @@
+[Unit]
+Description=nginx service file
+Wants=network.target
+
+[Service]
+Type=forking
+ExecStart=/sbin/nginx -c /etc/nginx/nginx.conf
+ExecReload=/sbin/nginx -s reload
+ExecStop=/sbin/nginx -s stop
+[Install]
+WantedBy=multi-user.target
