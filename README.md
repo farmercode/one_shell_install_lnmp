@@ -8,8 +8,9 @@ chmod a+x ubuntu_lnmp_init.sh<br>
 或者<br>
 chmod a+x centos7_lnmp_init.sh<br>
 <b>二 执行脚本</b><br>
-./ubuntu_lnmp_init.sh
-或者<br><
+sudo ./ubuntu_lnmp_init.sh
+或者<br>
 ./centos7_lnmp_init.sh<br>
 <br>
+centos如果你不是root角色也请类似使用ubuntu那样使用sudo来处理。<br>
 默认php的安装位置在/usr/local/php,所以无论是centos7还是ubuntu15*最好用root权限去运行，最后向/etc/profile中加入PHPRC必须需要root权限。如果觉得没必要刻可以自行注意掉那部分逻辑即可！
