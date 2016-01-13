@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 script_name=$(basename $0)
 script_dir=$(cd "$(dirname "$0")"; pwd)
 script_full_path=$script_dir/$script_name
@@ -12,7 +12,7 @@ if [ ! -d $download_dir ];then
 fi
 
 php_user=www-data
-php_group=php_user
+php_group=$php_user
 #判断用户组是否存在，不存在就创建
 egrep "^$php_group" /etc/group >& /dev/null
 if [ $? -ne 0 ];then
@@ -25,11 +25,8 @@ if [ $? -ne 0 ];then
     useradd $php_user -g $php_group -M
 fi
 
-
 echo "prepare ready!"
 echo "start install package dependency!"
-
-sleep 1s;
 
 
 apt-get -y install build-essential
@@ -39,7 +36,6 @@ apt-get -y install libxml2-dev perl libtool zlib1g libssl1.0.0 libssl-dev \
  libmcrypt-dev libmysqlclient18 libmysqlclient-dev libpcre3 libpcre3-dev
 
 echo "package dependency installed!"
-sleep 1;
 
 php_version="5.5.30"
 php_source_file=php-$php_version.tar.gz
@@ -48,14 +44,15 @@ pcre_version="8.37"
 pcre_name="pcre-$pcre_version"
 pcre_source_file="$pcre_name.tar.gz"
 
+source_dir="$download_dir"/source
 
-if [ ! -d "source" ]; then
+if [ ! -d "$source_dir" ]; then
     mkdir source
 fi
 
-cd $download_dir/source
+cd $source_dir
 
-if [ ! -f $pcre_source_file ];then
+if [ ! -f "$pcre_source_file" ];then
     wget -O $pcre_source_file "http://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fpcre%2Ffiles%2Fpcre%2F$pcre_version%2F&ts=1446191589&use_mirror=nchc"
 fi
 
