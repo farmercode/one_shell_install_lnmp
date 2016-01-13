@@ -14,3 +14,6 @@ sudo ./ubuntu_lnmp_init.sh
 <br>
 centos如果你不是root角色也请类似使用ubuntu那样使用sudo来处理。<br>
 默认php的安装位置在/usr/local/php,所以无论是centos7还是ubuntu15*最好用root权限去运行，最后向/etc/profile中加入PHPRC必须需要root权限。如果觉得没必要刻可以自行注意掉那部分逻辑即可！
+
+<b>注意<b>
+如果你的ubuntu或者centos源地址部分软件包无法下载，换个源地址试试。国内的朋友可以试试阿里云的镜像或者163的镜像！

@@ -30,7 +30,7 @@ echo "start install package dependency!"
 
 
 apt-get -y install build-essential
-apt-get -y install libxml2-dev perl libtool zlib1g libssl1.0.0 libssl-dev \
+apt-get -y install libxml2-dev perl libtool zlib1g libssl-dev \
  zlib1g-dev bzip2 libbz2-dev curl libcurl4-openssl-dev libjpeg8-dev \
  libpng12-dev libfreetype6-dev libgmp-dev libicu-dev libreadline6-dev libmcrypt4 \
  libmcrypt-dev libmysqlclient18 libmysqlclient-dev libpcre3 libpcre3-dev
@@ -44,13 +44,14 @@ pcre_version="8.37"
 pcre_name="pcre-$pcre_version"
 pcre_source_file="$pcre_name.tar.gz"
 
+# 创建临时文件下载目录
 source_dir="$download_dir"/source
-
-if [ ! -d "$source_dir" ]; then
-    mkdir source
+echo $source_dir
+if [[ ! -d "$source_dir" ]]; then
+    mkdir $source_dir
 fi
-
 cd $source_dir
+
 
 if [ ! -f "$pcre_source_file" ];then
     wget -O $pcre_source_file "http://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fpcre%2Ffiles%2Fpcre%2F$pcre_version%2F&ts=1446191589&use_mirror=nchc"

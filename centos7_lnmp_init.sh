@@ -23,7 +23,6 @@ if [ $? -ne 0 ];then
     useradd $php_user -g $php_group -M
 fi
 
-
 echo "prepare ready!"
 echo "start install package dependency!"
 
@@ -40,12 +39,12 @@ pcre_version="8.37"
 pcre_name="pcre-$pcre_version"
 pcre_source_file="$pcre_name.tar.gz"
 
+source_dir="$download_dir"/source
 
-cd $download_dir
-
-    if [ ! -d "source" ]; then
-        mkdir source
-    fi
+if [ ! -d "$source_dir" ]; then
+    mkdir $source_dir
+fi
+cd $source_dir
 
     #if [ ! -d "opt" ]; then
     #    mkdir opt
@@ -77,7 +76,6 @@ cd $download_dir
     --with-http_realip_module"
     echo $nginx_config
 
-    sleep 1
 
     $nginx_config
         make || exit 3
