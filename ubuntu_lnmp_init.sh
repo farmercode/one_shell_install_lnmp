@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 script_name=$(basename $0)
 script_dir=$(cd "$(dirname "$0")"; pwd)
 script_full_path=$script_dir/$script_name
@@ -15,7 +15,7 @@ php_user=www-data
 php_group=$php_user
 #判断用户组是否存在，不存在就创建
 egrep "^$php_group" /etc/group >& /dev/null
-if [ $? -ne 0 ];then
+if [[ $? -ne 0 ]];then
     groupadd $php_group
 fi
 
