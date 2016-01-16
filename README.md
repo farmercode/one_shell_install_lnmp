@@ -2,7 +2,7 @@
 <b>一键安装php</b>，目前针对默认安装的是php7！<br>
 目前在ubuntu15.10和centos7中进行过测试，可以成功安装！<br>
 <b>使用简介</b><br>
-<b>一 给脚本执行权限</b<br>>
+<b>一 给脚本执行权限</b<br>
 进入你的one_shell_install_lnmp的git目录下面，执行如下命令：<br>
 chmod a+x ubuntu_lnmp_init.sh<br>
 或者<br>
