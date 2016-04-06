@@ -37,7 +37,7 @@ apt-get -y install libxml2-dev perl libtool zlib1g libssl-dev \
 
 echo "package dependency installed!"
 
-php_version="5.5.30"
+php_version="5.6.20"
 php_source_file=php-$php_version.tar.gz
 
 pcre_version="8.37"
