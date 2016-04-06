@@ -4,6 +4,16 @@ script_dir=$(cd "$(dirname "$0")"; pwd)
 script_full_path=$script_dir/$script_name
 echo $script_full_path
 
+#安装EPEL源
+yum repolist|egrep "epel" >& /dev/null
+if [ $? -ne 0 ];then
+        epel_file="epel.noarch.rpm"
+        wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm -O $epel_file
+        rpm -ivh $epel_file
+        rm -f $epel_file
+        yum makecache
+fi
+
 download_dir = /download
 if [ ! -d $download_dir ];then
     mkdir -p $download_dir
@@ -32,7 +42,7 @@ yum -y install autoconf automake gcc gcc-c++ libxml2-devel openssl-devel openssl
 bzip2-devel libcurl-devel libjpeg-turbo libjpeg-turbo-devel libpng-devel \
  libpng12-dev freetype-devel gmp-devel libicu-devel readline-devel libmcrypt-devel
 
-php_version="7.0.0"
+php_version="5.6.20"
 php_source_file=php-$php_version.tar.gz
 
 pcre_version="8.37"
