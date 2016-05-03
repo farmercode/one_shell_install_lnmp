@@ -4,6 +4,18 @@ script_dir=$(cd "$(dirname "$0")"; pwd)
 script_full_path=$script_dir/$script_name
 echo $script_full_path
 
+#获得当前系统版本
+os_version=`lsb_release -r|awk '{print $2}'`
+
+case $os_version in
+  "16.04")
+      libmysqlclient="libmysqlclient20"
+      ;;
+  *)
+      libmysqlclient="libmysqlclient18"
+      ;;
+esac
+
 current_user=`whoami`
 
 download_dir="/download"
@@ -33,7 +45,7 @@ apt-get -y install build-essential
 apt-get -y install libxml2-dev perl libtool zlib1g libssl-dev \
  zlib1g-dev bzip2 libbz2-dev curl libcurl4-openssl-dev libjpeg8-dev \
  libpng12-dev libfreetype6-dev libgmp-dev libicu-dev libreadline6-dev libmcrypt4 \
- libmcrypt-dev libmysqlclient18 libmysqlclient-dev libpcre3 libpcre3-dev
+ libmcrypt-dev $libmysqlclient libmysqlclient-dev libpcre3 libpcre3-dev
 
 echo "package dependency installed!"
 
