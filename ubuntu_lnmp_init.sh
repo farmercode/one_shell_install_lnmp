@@ -97,6 +97,15 @@ sleep 1
 $nginx_config
     make || exit 3
     make install || exit 4
+    
+    #复制nginx.service文件到systemd配置文件目录
+    nginx_systemd_config="nginx.service"
+    cp $nginx_systemd_config /lib/systemd/system/$nginx_systemd_config
+    #重载系统systemd配置文件
+    systemctl daemon-reload
+    systemctl enable $nginx_systemd_config
+    cp conf/* /etc/nginx/
+    
     echo "=======================================================\r\n"
     echo "=====================nginx done========================\r\n"
     echo "=======================================================\r\n"
