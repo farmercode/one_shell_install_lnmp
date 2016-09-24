@@ -48,6 +48,8 @@ php_source_file=php-$php_version.tar.gz
 pcre_version="8.37"
 pcre_name="pcre-$pcre_version"
 pcre_source_file="$pcre_name.tar.gz"
+nginx_version=1.8.0
+nginx_source_file="nginx-$nginx_version.tar.gz"
 
 source_dir="$download_dir"/source
 
@@ -66,8 +68,8 @@ cd $source_dir
     wget -O $pcre_source_file "http://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fpcre%2Ffiles%2Fpcre%2F$pcre_version%2F&ts=1446191589&use_mirror=nchc"
     fi
 
-    if [ ! -f "nginx-1.8.0.tar.gz" ];then
-    wget -O "nginx-1.8.0.tar.gz" "http://nginx.org/download/nginx-1.8.0.tar.gz"
+    if [ ! -f "$nginx_source_file" ];then
+    wget -O "$nginx_source_file" "http://nginx.org/download/$nginx_source_file"
     fi
 
     if [ ! -f $php_source_file ];then
