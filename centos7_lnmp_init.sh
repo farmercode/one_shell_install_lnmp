@@ -7,10 +7,9 @@ echo $script_full_path
 #安装EPEL源
 yum repolist|egrep "epel" >& /dev/null
 if [ $? -ne 0 ];then
-        epel_file="epel.noarch.rpm"
-        wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm -O $epel_file
+        epel_file="epel-release-7-8.noarch.rpm"
+        #wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm -O $epel_file
         rpm -ivh $epel_file
-        rm -f $epel_file
         yum makecache
 fi
 
