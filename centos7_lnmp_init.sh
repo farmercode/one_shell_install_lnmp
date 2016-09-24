@@ -78,8 +78,8 @@ cd $source_dir
     fi
 
     if [ ! -f "/sbin/nginx" ];then
-        tar -xvf $pcre_source_file
-        tar -xvf $nginx_source_file || exit 201
+        tar -xvf $pcre_source_file || exit 201
+        tar -xvf $nginx_source_file || exit 202
         cd nginx-1.8.0
     nginx_config="./configure --prefix=/usr/local/nginx-1.8.0 --sbin-path=/sbin/ --conf-path=/etc/nginx/ \
     --with-http_gzip_static_module --with-pcre=../pcre-8.37/ --with-pcre-jit --with-http_ssl_module \
@@ -88,8 +88,8 @@ cd $source_dir
 
 
     $nginx_config
-        make || exit 3
-        make install || exit 4
+        make || exit 301
+        make install || exit 302
         cd ..
         echo "=======================================================\r\n"
         echo "=====================nginx done========================\r\n"
@@ -120,8 +120,8 @@ cd $source_dir
 
     $config_cmd
 
-    make|| exit 5
-    make install||exit 6
+    make|| exit 401
+    make install||exit 402
 
 
     echo "=======================================================\r\n"
