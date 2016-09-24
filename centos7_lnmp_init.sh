@@ -2,7 +2,10 @@
 script_name=$(basename $0)
 script_dir=$(cd "$(dirname "$0")"; pwd)
 script_full_path=$script_dir/$script_name
-echo $script_full_path
+echo $script_dir
+os_version=`cat /etc/redhat-release|awk '{print $4}'`
+
+current_user=`whoami`
 
 #安装EPEL源
 yum repolist|egrep "epel" >& /dev/null
@@ -91,10 +94,11 @@ cd $source_dir
     $nginx_config
         make || exit 301
         make install || exit 302
-        cd ..
-        echo "=======================================================\r\n"
+        cp conf/* /etc/nginx/
+	echo "=======================================================\r\n"
         echo "=====================nginx done========================\r\n"
         echo "=======================================================\r\n"
+        cd ..
     fi
 
     php_install_dir=/usr/local/php-$php_version
@@ -147,6 +151,16 @@ cd $source_dir
         cd /usr/local/php/etc
         mv php-fpm.conf.default php-fpm.conf
     fi
+    #复制nginx.service文件到systemd配置文件目录
+    nginx_systemd_config="nginx.service"
+    fpm_systemd_config="php-fpm.service"
+    systemd_config_dir="/lib/systemd/system/"
+    cp -f $script_dir"/"$nginx_systemd_config $systemd_config_dir
+    cp -f $script_dir"/"$fpm_systemd_config $systemd_config_dir
+    #重载系统systemd配置文件
+    systemctl daemon-reload
+    systemctl enable $nginx_systemd_config
+
 
     #将PHPRC加入/etc/profile
     egrep "PHPRC" /etc/profile
