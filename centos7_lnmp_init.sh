@@ -42,7 +42,7 @@ yum -y install autoconf automake gcc gcc-c++ libxml2-devel openssl-devel openssl
 bzip2-devel libcurl-devel libjpeg-turbo libjpeg-turbo-devel libpng-devel \
  libpng12-dev freetype-devel gmp-devel libicu-devel readline-devel libmcrypt-devel
 
-php_version="5.6.20"
+php_version="5.6.26"
 php_source_file=php-$php_version.tar.gz
 
 pcre_version="8.37"
