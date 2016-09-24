@@ -14,7 +14,7 @@ if [ $? -ne 0 ];then
         yum makecache
 fi
 
-download_dir = /download
+download_dir=/download
 if [ ! -d $download_dir ];then
     mkdir -p $download_dir
 fi
