@@ -9,3 +9,4 @@ ExecReload=/sbin/nginx -s reload
 ExecStop=/sbin/nginx -s stop
 [Install]
 WantedBy=multi-user.target
+Alias=nginx
