@@ -87,25 +87,18 @@ if [ ! -f "/sbin/nginx" ];then
     tar -xvf $pcre_source_file
     tar -xvf $nginx_source_file || exit 201
     cd nginx-1.8.0
-nginx_config="./configure --prefix=/usr/local/nginx-1.8.0 --sbin-path=/sbin/ --conf-path=/etc/nginx/ \
---with-http_gzip_static_module --with-pcre=../pcre-8.37/ --with-pcre-jit --with-http_ssl_module \
---with-http_realip_module"
-echo $nginx_config
+    nginx_config="./configure --prefix=/usr/local/nginx-1.8.0 --sbin-path=/sbin/ --conf-path=/etc/nginx/ \
+    --with-http_gzip_static_module --with-pcre=../pcre-8.37/ --with-pcre-jit --with-http_ssl_module \
+    --with-http_realip_module"
+    echo $nginx_config
 
-sleep 1
+    sleep 1
 
-$nginx_config
+    $nginx_config
     make || exit 3
     make install || exit 4
-    
-    #复制nginx.service文件到systemd配置文件目录
-    nginx_systemd_config="nginx.service"
-    cp $nginx_systemd_config /lib/systemd/system/$nginx_systemd_config
-    #重载系统systemd配置文件
-    systemctl daemon-reload
-    systemctl enable $nginx_systemd_config
     cp conf/* /etc/nginx/
-    
+
     echo "=======================================================\r\n"
     echo "=====================nginx done========================\r\n"
     echo "=======================================================\r\n"
@@ -163,6 +156,20 @@ else
     cd /usr/local/php/etc
     mv php-fpm.conf.default php-fpm.conf
 fi
+#复制nginx.service,php-fpm.service文件到systemd配置文件目录
+nginx_systemd_config="nginx.service"
+fpm_systemd_config="php-fpm.service"
+systemd_config_dir="/lib/systemd/system/"
+if [ ! -f "$systemd_config_dir$nginx_systemd_config" ]; then
+    cp $script_dir"/"$nginx_systemd_config $systemd_config_dir
+fi
+if [ ! -f "$systemd_config_dir$fpm_systemd_config"];then
+    cp $script_dir"/"$fpm_systemd_config $systemd_config_dir
+fi
+#重载系统systemd配置文件
+systemctl daemon-reload
+systemctl enable $nginx_systemd_config
+systemctl enable $fpm_systemd_config
 
 #将PHPRC加入/etc/profile
 egrep "PHPRC" /etc/profile
