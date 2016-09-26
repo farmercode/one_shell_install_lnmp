@@ -160,7 +160,7 @@ cd $source_dir
     #重载系统systemd配置文件
     systemctl daemon-reload
     systemctl enable $nginx_systemd_config
-
+    systemctl enable $fpm_systemd_config
 
     #将PHPRC加入/etc/profile
     egrep "PHPRC" /etc/profile
