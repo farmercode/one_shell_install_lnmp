@@ -5,7 +5,7 @@
 ###一 给脚本执行权限 
 进入你的one_shell_install_lnmp的git目录下面，执行如下命令: 
     
-    chmod a+x ubuntu_lnmp_init.sh<br>
+    chmod a+x ubuntu_lnmp_init.sh
     
 或者 
 
