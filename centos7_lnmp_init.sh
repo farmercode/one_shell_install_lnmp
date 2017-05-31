@@ -50,8 +50,9 @@ php_source_file=php-$php_version.tar.gz
 pcre_version="8.39"
 pcre_name="pcre-$pcre_version"
 pcre_source_file="$pcre_name.tar.gz"
-nginx_version=1.8.0
-nginx_source_file="nginx-$nginx_version.tar.gz"
+nginx_version=1.10.3
+nginx_name="nginx-$nginx_version"
+nginx_source_file="$nginx_name.tar.gz"
 
 source_dir="$download_dir"/source
 
@@ -84,9 +85,9 @@ cd $source_dir
     if [ ! -f "/sbin/nginx" ];then
         tar -xvf $pcre_source_file || exit 201
         tar -xvf $nginx_source_file || exit 202
-        cd nginx-1.8.0
-    nginx_config="./configure --prefix=/usr/local/nginx-1.8.0 --sbin-path=/sbin/ --conf-path=/etc/nginx/ \
-    --with-http_gzip_static_module --with-pcre=../pcre-8.37/ --with-pcre-jit --with-http_ssl_module \
+        cd $nginx_name
+    nginx_config="./configure --prefix=/usr/local/$nginx_name --sbin-path=/sbin/ --conf-path=/etc/nginx/ \
+    --with-http_gzip_static_module --with-pcre=../$pcre_name/ --with-pcre-jit --with-http_ssl_module \
     --with-http_realip_module"
     echo $nginx_config
 
