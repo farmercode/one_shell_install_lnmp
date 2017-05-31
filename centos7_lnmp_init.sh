@@ -67,7 +67,7 @@ cd $source_dir
     cd source
 
     if [ ! -f $pcre_source_file ];then
-    wget -O $pcre_source_file "http://www.helpergarden.com/download/pcre-8.37.tar.gz"
+    wget -O $pcre_source_file "http://www.helpergarden.com/download/$pcre_source_file"
     fi
 
     if [ ! -f "$nginx_source_file" ];then
