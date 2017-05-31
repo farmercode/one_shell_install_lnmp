@@ -52,7 +52,7 @@ echo "package dependency installed!"
 php_version="5.6.30"
 php_source_file=php-$php_version.tar.gz
 
-pcre_version="8.37"
+pcre_version="8.39"
 pcre_name="pcre-$pcre_version"
 pcre_source_file="$pcre_name.tar.gz"
 
