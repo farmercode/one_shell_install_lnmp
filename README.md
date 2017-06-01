@@ -24,3 +24,6 @@ centos如果你不是root角色也请类似使用ubuntu那样使用sudo来处理
 如果你的ubuntu或者centos源地址部分软件包无法下载，换个源地址试试。国内的朋友可以试试阿里云的镜像或者163的镜像！
 ### 更新 ### 
 centos7脚本更新:由于我使用的是163的源上面没有libmcrypt-devel这个包，所以就在脚本里增加了**epel源**(Extra Packages for Enterprise Linux)
+
+### Debug 
+如果需要调试脚本，可以在脚本的第二行加入``set -x``,会把脚本执行内容给显示出来。
